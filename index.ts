@@ -141,7 +141,103 @@ const kitty = {
 // }
 kitty.name = 'Danielle';
 kitty.numLives--;
+//解构
+//数组解构
+let input = [1, 2];
+let [first, second] = input;
+console.log(first);
+console.log(second);
+//变量交换
+[first, second] = [second, first];
 //
+function funcFS([first, second] = [number, number]) {
+  console.log(first + second)
+}
+funcFS([1, 2])
+//...rest展示操作符
+let [firstN, ...rest] = [1, 2, 3, 4];
+console.log(firstN);
+console.log(rest);
+//对象解构
+let test = {
+  x: 0, y: 10, width: 15,
+  height: 20
+}
+let { x, y, width, height } = test;
+console.log(x, y, width, height);
 
+//function
+//函数声明式
+function maxA(x: number, y: number): number {
+  return x > y ? x : y;
+}
+//函数表达式
+let maxB = function (x: number, y: number): number {
+  return x > y ? x : y;
+}
+// let result1=maxA(2);
+// let result2=maxA(2,4,7);
+let result3 = maxA(2, 4);
 
+//可选参数
+function max(x: number, y?: number): number {
 
+  if (y) {
+    return x > y ? x : y;
+  } else {
+    return x;
+  }
+}
+let result4 = max(2);
+// let result5=max(2,4,7);
+let result6 = max(2, 4);
+
+//默认参数
+function maxC(x: number, y = 4): number {
+  return x > y ? x : y;
+}
+maxC(2);
+maxC(2,undefined);
+// maxC(2,4,7);
+maxC(2,4);
+
+function maxD(x = 2, y: number): number {
+  return x > y ? x : y;
+}
+// maxD(2);
+maxD(undefined,4);
+// maxD(2,4,7);
+maxD(2,4);
+//剩余参数
+function sum(x: number, ...restOfNumber: number[]): number {
+  let result = x;
+  for (let i = 0; i < restOfNumber.length; i++) {
+    result += restOfNumber[i];
+  }
+  return result;
+}
+let result5 = sum(1, 2, 3, 4, 5);
+console.log(result5)
+
+//函数重载
+function css(config: {});
+function css(config: string, value: string);
+function css(config: any, value?: any) {
+  if (typeof config === 'string') {
+    //...
+  } else if (typeof config === 'object') {
+    //...
+  }
+};
+//箭头函数
+let gift = {
+  gifts: ['teddy bear', 'spiderman', 'dinosaur', 'Thomas loco', 'toy bricks', 'Transformers'],
+  giftPicker: function () {
+    return ()=> {
+      let pickedNumber = Math.floor(Math.random() * 6);
+      return this.gifts[pickedNumber];
+    }
+  }
+}
+let pickGift =gift.giftPicker();
+console.log('you get a:'+pickGift());
