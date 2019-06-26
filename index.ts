@@ -1,4 +1,4 @@
-// Import stylesheets
+/*// Import stylesheets
 import './style.css';
 
 // Write TypeScript code!
@@ -314,3 +314,33 @@ let person :Person;//创建一个抽象类的引用
 person=new Male();//创建一个Male实例；
 person.speak();
 person.walking();
+*/
+
+//接口
+//属性类型接口
+interface FullName{
+  firstName:string;
+  secondName?:string;
+}
+function printLabel(name:FullName){
+  console.log(name.firstName+' '+name.secondName);
+}
+let myObj={
+  age:10,firstName:'Jim',secondName:'Raynor'
+}
+let myObj2={
+  age:10,firstName:'Jim'
+}
+printLabel(myObj);
+printLabel(myObj2);
+
+//函数类型接口
+interface encrypt{
+(value:string,salt:string):string
+}
+
+//可索引类型接口
+
+//类类型接口
+
+//接口扩展
