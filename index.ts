@@ -241,3 +241,76 @@ let gift = {
 }
 let pickGift =gift.giftPicker();
 console.log('you get a:'+pickGift());
+//class
+class Car {
+
+  engine: String;
+  constructor(engine: string) {
+    this.engine = engine;
+  }
+  drive(distanceInMeters: number = 0) {
+    console.log(`A car runs ${distanceInMeters}m powered by ` + this.engine)
+  }
+}
+
+let car = new Car('petrol');
+car.drive(100);
+//继承与多态
+class MotoCar extends Car {
+  constructor(engine: string) {
+    super(engine);
+  }
+}
+
+class Jeep extends Car {
+  constructor(engine: string) {
+    super(engine);
+  }
+  drive(distanceInMeters: number = 100) {
+    console.log('jeep...')
+    return super.drive(distanceInMeters);
+  }
+}
+let tesla = new MotoCar('electricty');
+let landRover: Car = new Jeep('petrol')//实现多态
+tesla.drive();//调用父类的drive方法
+landRover.drive(200);//调用子类的drive方法
+//修饰符
+//public private protected
+
+//静态属性
+class Grid {
+  static origin = {
+    x: 0, y: 0
+  };
+
+  constructor(public scale: number) {
+
+  }
+  calculateDistanceFromOrigin(point: { x: number, y: number }) {
+    let xDist = (point.x - Grid.origin.x);
+    let yDist = (point.y - Grid.origin.y);
+    return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+  }
+}
+let grid1 = new Grid(1.0);
+let grid2 = new Grid(5.0);
+console.log(grid1.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+console.log(grid2.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+//抽象类
+abstract class Person {
+  abstract speak(): void;//必须在派生类中实现
+  walking(): void {
+    console.log('Walking on the road');
+  }
+}
+class Male extends Person {
+  speak(): void {
+    console.log('How are you?');
+  }
+}
+let person :Person;//创建一个抽象类的引用
+// person=new person();//报错，不能创建抽象类实例
+person=new Male();//创建一个Male实例；
+person.speak();
+person.walking();
