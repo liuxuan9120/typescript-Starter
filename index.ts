@@ -1,4 +1,4 @@
-/*// Import stylesheets
+// Import stylesheets
 import './style.css';
 
 // Write TypeScript code!
@@ -314,7 +314,7 @@ let person :Person;//创建一个抽象类的引用
 person=new Male();//创建一个Male实例；
 person.speak();
 person.walking();
-*/
+
 
 //接口
 //属性类型接口
